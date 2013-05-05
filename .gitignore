@@ -1,0 +1,7 @@
+*.gem
+*.gemspec
+build.rb
+bgm/*
+gfx/*
+sfx/*
+stages/*.jpg
