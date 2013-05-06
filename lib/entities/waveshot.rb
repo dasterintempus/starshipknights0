@@ -3,14 +3,11 @@ require 'shot'
 module StarshipKnights
   module Entities
     class WaveShot < StarshipKnights::EntityTypes::Shot
-      
-      def self.shootingproperties
-        return super.merge({:cooldown => 0.95})
+      class << self
+        attr_accessor :shootingproperties, :firesound
       end
-      
-      def self.firesound
-        return "wave"
-      end
+      @shootingproperties = {:cooldown => 0.95}
+      @firesound = "wave"
       
       def configure(opts)
         opts["radius"] ||= 7.0

@@ -8,7 +8,7 @@ module StarshipKnights
     def initialize(klass)
       @klass = klass
       @equip = Loadout.__send__("#{klass.downcase}_equip_default")
-      @equip[0] = "TriBeam"
+      #@equip[0] = "RailCannon"
     end
     
     def spawn(battlestage, x, y, angle, opts=nil)

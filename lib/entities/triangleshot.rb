@@ -3,13 +3,11 @@ require 'shot'
 module StarshipKnights
   module Entities
     class TriangleShot < StarshipKnights::EntityTypes::Shot
-      def self.shootingproperties
-        return super.merge({:cooldown => 0.45})
+      class << self
+        attr_accessor :shootingproperties, :firesound
       end
-      
-      def self.firesound
-        return "doop"
-      end
+      @shootingproperties = {:cooldown => 0.45}
+      @firesound = "doop"
       
       def configure(opts)
         opts["radius"] ||= 5.5

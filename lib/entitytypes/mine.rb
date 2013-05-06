@@ -29,7 +29,7 @@ module StarshipKnights
         if @armed then
           if other.teamid != @teamid then
             oci = other.collideinfo
-            if oci[:ship]
+            if not oci[:weapon]
               if @triggersound then
                 play_sound(@triggersound, @x, @y)
               end

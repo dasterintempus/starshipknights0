@@ -3,13 +3,11 @@ require 'shot'
 module StarshipKnights
   module Entities
     class RailCannon < StarshipKnights::EntityTypes::Shot
-      def self.shootingproperties
-        return super.merge({:cooldown => 1.85})
+      class << self
+        attr_accessor :shootingproperties, :firesound
       end
-      
-      def self.firesound
-        return "railgun"
-      end
+      @shootingproperties = {:cooldown => 1.85}
+      @firesound = "railgun"
       
       def configure(opts)
         opts["radius"] ||= 10.0

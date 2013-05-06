@@ -16,11 +16,11 @@ module StarshipKnights
       end
       
       def turn_right(dt)
-        rotate(@turnspeed * dt)
+        rotate(@turnspeed * dt) if @turnspeed
       end
       
       def turn_left(dt)
-        rotate(-@turnspeed * dt)
+        rotate(-@turnspeed * dt) if @turnspeed
       end
       
       def to_s

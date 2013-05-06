@@ -3,13 +3,11 @@ require 'mine'
 module StarshipKnights
   module Entities
     class SlowMine < StarshipKnights::EntityTypes::Mine
-      def self.shootingproperties
-        return super.merge({:cooldown => 5.0})
+      class << self
+        attr_accessor :shootingproperties, :firesound
       end
-    
-      def self.firingsound
-        return "slowmineplant"
-      end
+      @shootingproperties = {:cooldown => 5.0}
+      @firesound = "slowmineplant"
     
       def configure(opts)
         opts["radius"] ||= 8.0

@@ -46,10 +46,10 @@ module StarshipKnights
           case input.cmd
             when "special"
               if @curspecial > 0.1 then
-                if @equip_special == "cloak" then
+                if @equippedspecial == "cloak" then
                   @invis = true
                   drain_special(dt, 2.5)
-                elsif @equip_special == "stealth"
+                elsif @equippedspecial == "stealth"
                   @stealth = true
                   drain_special(dt, 1.0)
                 end

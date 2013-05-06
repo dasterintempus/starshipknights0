@@ -3,14 +3,11 @@ require 'shot'
 module StarshipKnights
   module Entities
     class DisruptShot < StarshipKnights::EntityTypes::Shot
-    
-      def self.shootingproperties
-        return super.merge({:cooldown => 0.75})
+      class << self
+        attr_accessor :shootingproperties, :firesound
       end
-      
-      def self.firesound
-        return "wavealt2"
-      end
+      @shootingproperties = {:cooldown => 0.75}
+      @firesound = "wavealt2"
     
       attr_reader :disrupt
       def configure(opts)

@@ -3,19 +3,14 @@ require 'shot'
 module StarshipKnights
   module Entities
     class ChargeShot < StarshipKnights::EntityTypes::Shot
-      def self.shootingproperties
-        return super.merge({:charging => 3.5, :cooldown => 1.75})
+      class << self
+        attr_accessor :shootingproperties, :firesound, :chargesound
       end
-      
-      def self.firesound
-        return "phaser"
-      end
-      
-      def self.chargesound
-        return "charging"
-      end
+      @shootingproperties = {:charging => 3.5, :cooldown => 1.75}
+      @firesound = "phaser"
+      @chargesound = "charging"
     
-      def configure
+      def configure(opts)
         if @teamid == 0 then
           opts["imagename"] ||= "chargeshotred"
         elsif @teamid == 1 then

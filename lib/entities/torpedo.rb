@@ -3,13 +3,11 @@ require 'missile'
 module StarshipKnights
   module Entities
     class Torpedo < StarshipKnights::EntityTypes::Missile
-      def self.shootingproperties
-        return super.merge({:cooldown => 2.5})
+      class << self
+        attr_accessor :shootingproperties, :firesound
       end
-      
-      def self.firesound
-        return "missilelaunchalt"
-      end
+      @shootingproperties = {:cooldown => 2.5}
+      @firesound = "missilelaunchalt"
       
       def configure(opts)
         opts["radius"] ||= 6.0
@@ -31,8 +29,8 @@ module StarshipKnights
         inputs.each do |input|
           case input.cmd
             when "altfire"
-              if @lifetime <= 1.5 then
-                detonate
+              if @lifetime <= 0.75 then
+                expire
               end
           end
         end

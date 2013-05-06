@@ -11,6 +11,7 @@ module StarshipKnights
       def setup
         @armingtime = @armingtimer
         @armed = false
+        super
       end
       
       def physics(dt, inputs)

@@ -51,9 +51,13 @@ module StarshipKnights
       #$logger.debug { "Tick: " + @current_tick.to_s} if $logger
       
       cleanup
-      
+      shipinputs = Hash.new
       @entities.each_value do |e|
-        ei = @inputs[e.id].update
+        next if shipinputs.has_key? e.shipid
+        shipinputs[e.shipid] = @inputs[e.shipid].update
+      end
+      @entities.each_value do |e|
+        ei = shipinputs[e.shipid]
         #$logger.debug { "eid: #{e.id} has inputs #{ei.inspect}" } if $logger
         ei ||= []
         #$logger.debug { "eid: #{e.id} has inputs #{ei.inspect}" } if $logger
@@ -122,9 +126,9 @@ module StarshipKnights
       return @entities.values
     end
     
-    def add_input(id, cmd, mode)
+    def add_input(shipid, cmd, mode)
       #$logger.debug { "id #{id} got input #{cmd}#{mode}" } if $logger
-      @inputs[id].handle_input InputEvent.new(cmd, mode)
+      @inputs[shipid].handle_input InputEvent.new(cmd, mode)
     end
     
     def draw_bg

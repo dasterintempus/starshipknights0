@@ -9,7 +9,7 @@ module StarshipKnights
     attr_reader :playeractiveship, :starmap
     attr_accessor :playerstarcoords
     def initialize
-      @playeractiveship = GameShip.new("pegasus")
+      @playeractiveship = GameShip.new("djinn")
       @starmap = GameStarMap.new(35, 20, 15)
       @playerstarcoords = @starmap.stars.keys.sample
     end

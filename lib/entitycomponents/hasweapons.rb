@@ -16,6 +16,7 @@ module StarshipKnights
         @secwepcooldown = 0.0
         @priwepchargetime = 0.0 if get_priwep.shootingproperties[:charging]
         @secwepchargetime = 0.0 if @secweptypename and get_secwep.shootingproperties[:charging]
+        @chargesoundreplaytime = 0.35 if get_priwep.shootingproperties[:charging] or (@secweptypename and get_secwep.shootingproperties[:charging])
         super
       end
       
@@ -133,10 +134,10 @@ module StarshipKnights
         
         if wep.shootingproperties[:charging] then
           if slot == "pri" then
-            opts["chargetime"] = @priwepchargetime
+            opts["chargedtime"] = @priwepchargetime
             @priwepchargetime = 0.0
           elsif slot == "sec" then
-            opts["chargetime"] = @secwepchargetime
+            opts["chargedtime"] = @secwepchargetime
             @secwepchargetime = 0.0
           end
         end

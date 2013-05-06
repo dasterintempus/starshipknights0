@@ -217,6 +217,7 @@ module StarshipKnights
         ents.each do |e|
           shape = ""
           edi = e.drawinfo
+          next if edi[:stealth] and not mine.include? e
           if e.is_ship then
             shape = "box"
             next if teamid != e.teamid and edi[:stealth]

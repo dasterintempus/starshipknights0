@@ -9,6 +9,7 @@ module StarshipKnights
       
       def setup
         @damage = @hits
+        super
       end
       
       def physics(dt, inputs)

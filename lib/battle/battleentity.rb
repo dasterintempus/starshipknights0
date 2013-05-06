@@ -48,11 +48,11 @@ module StarshipKnights
       zorder = 5
       zorder += 1 if is_ship
       
-      if stateinfo[:stealth] and pcteam == @teamid then
+      if drawinfo[:stealth] and pcteam == @teamid then
         @image.draw_rot(@x, @y, zorder, @angle, 0.5, 0.5, sx, sy, 0xFFAAAAAA)
-      elsif stateinfo[:invis] and pcteam == @teamid then
+      elsif drawinfo[:invis] and pcteam == @teamid then
         @image.draw_rot(@x, @y, zorder, @angle, 0.5, 0.5, sx, sy, 0x88FFFFFF)
-      elsif stateinfo[:invis] and pcteam != @teamid then
+      elsif drawinfo[:invis] and pcteam != @teamid then
         @image.draw_rot(@x, @y, zorder, @angle, 0.5, 0.5, sx, sy, 0x05FFFFFF)
       else
         @image.draw_rot(@x, @y, zorder, @angle, 0.5, 0.5, sx, sy)
@@ -108,10 +108,6 @@ module StarshipKnights
     end
     
     def collide(other)
-    end
-    
-    def stateinfo
-      return Hash.new
     end
   
   end
