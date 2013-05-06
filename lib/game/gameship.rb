@@ -4,16 +4,16 @@ module StarshipKnights
   class GameShip
     
     attr_reader :klass
-    attr_accessor :equip
+    attr_accessor :equipment
     def initialize(klass)
       @klass = klass
-      @equip = Loadout.__send__("#{klass.downcase}_equip_default")
-      #@equip[0] = "RailCannon"
+      @equipment = Loadout.__send__("#{klass.downcase}_equip_default")
     end
     
     def spawn(battlestage, x, y, angle, opts=nil)
+      return nil unless Loadout.validate(@klass, @equipment)
       opts ||= Hash.new
-      opts["equip"] = @equip
+      opts["equip"] = @equipment
       return battlestage.spawn(klass, opts, 0, nil, x, y, angle)
     end
   end

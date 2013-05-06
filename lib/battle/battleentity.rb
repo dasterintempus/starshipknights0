@@ -128,8 +128,8 @@ module StarshipKnights
       out["ringshot"] = StarshipKnights::Entities::RingShot
       out["tribeam"] = StarshipKnights::Entities::TriBeam
       out["rocket"] = StarshipKnights::Entities::Rocket
-      out["pegasusshield"] = StarshipKnights::Entities::PegasusShield
-      out["pegasus"] = StarshipKnights::Entities::Pegasus
+      out["minotaurshield"] = StarshipKnights::Entities::MinotaurShield
+      out["minotaur"] = StarshipKnights::Entities::Minotaur
       
       out["waveshot"] = StarshipKnights::Entities::WaveShot
       out["disruptshot"] = StarshipKnights::Entities::DisruptShot
@@ -149,8 +149,14 @@ module StarshipKnights
       out["explosion"] = StarshipKnights::Entities::ExplosionReal
       #out["asteroid"] = StarshipKnights::Entities::Asteroid
     
-      out["roundblock"] = StarshipKnights::Entities::RoundBlockEnemy
+      out.update(self.enemies)
       
+      return out
+    end
+    
+    def self.enemies
+      out = Hash.new
+      out["roundblock"] = StarshipKnights::Entities::RoundBlockEnemy
       return out
     end
   end

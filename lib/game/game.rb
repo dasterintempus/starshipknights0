@@ -6,16 +6,27 @@ module StarshipKnights
 
   class Game
     
-    attr_reader :playeractiveship, :starmap
-    attr_accessor :playerstarcoords
+    attr_reader :playeractiveship, :lastbattlestatus
+    attr_accessor :difficulty
     def initialize
-      @playeractiveship = GameShip.new("djinn")
-      @starmap = GameStarMap.new(35, 20, 15)
-      @playerstarcoords = @starmap.stars.keys.sample
+      @playeractiveship = nil
+      @lastbattlestatus = 0
+    end
+    
+    def selectship(ship)
+      @playeractiveship = GameShip.new(ship)
     end
     
     def spawnplayership(battlestage, x, y, angle, opts=nil)
       return @playeractiveship.spawn(battlestage, x, y, angle, opts)
+    end
+    
+    def losebattle
+      @lastbattlestatus = -1
+    end
+    
+    def winbattle
+      @lastbattlestatus = 1
     end
   end
   

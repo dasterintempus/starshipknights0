@@ -2,13 +2,13 @@ require 'ship'
 
 module StarshipKnights
   module Entities
-    class Pegasus < StarshipKnights::EntityTypes::Ship
+    class Minotaur < StarshipKnights::EntityTypes::Ship
       
       def configure(opts)
         if @teamid == 0 then
-          opts["imagename"] ||= "pegasusred"
+          opts["imagename"] ||= "minotaurred"
         elsif @teamid == 1 then
-          opts["imagename"] ||= "pegasusblue"
+          opts["imagename"] ||= "minotaurblue"
         end
         if @equippedprimary == "ringshot" then
           opts["priweptypename"] ||= "ringshot"
@@ -72,7 +72,7 @@ module StarshipKnights
       
       def create_shield
         opts = Hash.new
-        @stage.spawn("pegasusshield", opts, @teamid, @id, @x, @y, 0.0)
+        @stage.spawn("minotaurshield", opts, @teamid, @id, @x, @y, 0.0)
       end
       
       def get_shield

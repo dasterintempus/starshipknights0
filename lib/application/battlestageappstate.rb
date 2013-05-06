@@ -12,33 +12,11 @@ module StarshipKnights
     def initialize(app, drawwidth, drawheight, enemies, conf=Hash.new)
       super(app, drawwidth, drawheight)
       @battlestage = BattleStage.new(self, conf)
-      @pcid = $game.spawnplayership(@battlestage, 50, 50, 0)
-      @enemy_ids = []
-      @enemy_ais = Hash.new
+      @pcid = $game.spawnplayership(@battlestage, @battlestage.xsize/2.0, @battlestage.ysize*2.0/3.0, 270)
+      @enemymanager = EnemyManager.new(self, $game.difficulty, @battlestage, enemies)
       
-      #DEBUG, REMOVE TO ENABLE ENEMIES
-      #enemies = []
-      
-      enemies.each do |edef|
-        eopts = edef["eopts"] || Hash.new
-        aiopts = edef["aiopts"] || Hash.new
-        
-        params = edef["params"]
-        
-        id = @battlestage.spawn(edef["klass"], eopts, params["teamid"], nil, params["x"], params["y"], params["angle"])
-        ai = BattleAI.new(id, @battlestage)
-        edef["aipatterns"].each do |patternklass|
-          ai.extend(AIPatterns.all[patternklass])
-        end
-        ai.configure(aiopts)
-        ai.setup
-        
-        @enemy_ais[id] = ai
-        @enemy_ids << id
-      end
-      
-      @viewport_x = 800
-      @viewport_y = 600
+      @viewport_x = drawwidth
+      @viewport_y = drawheight
       
       @camera_x = 0
       @camera_y = 0
@@ -47,7 +25,8 @@ module StarshipKnights
     end
     
     def pc
-      return @battlestage.get_by_id(@pcid)
+      ship = @battlestage.get_by_id(@pcid)
+      return ship
     end
     
     def play_sound(name, x, y)
@@ -61,6 +40,18 @@ module StarshipKnights
       #return if vol < 0.0 or vol > 1.0
       vol = 1.0 - ((pcy - y).abs / 650.0)
       @app.play_sound(name, pan, vol)
+    end
+    
+    def winbattle
+      $game.winbattle
+      @app.stop_music
+      @app.pop_state
+    end
+    
+    def losebattle
+      $game.losebattle
+      @app.stop_music
+      @app.pop_state
     end
     
     def set_cam(x,y,center=true)
@@ -92,11 +83,14 @@ module StarshipKnights
     end
     
     def update(dt)
-      @enemy_ais.each_value do |ai|
-        ai.think(dt)
-      end
-    
       @battlestage.tick(dt)
+    
+      unless pc then
+        losebattle
+        return
+      end
+      
+      @enemymanager.update(dt)
       
       set_cam(pc.x, pc.y)
       @camera_x = Util.clamp(@camera_x, 0, @battlestage.xsize - @viewport_x)
@@ -104,6 +98,7 @@ module StarshipKnights
     end
     
     def draw
+      return unless pc
       draw_hud
       @app.translate((@drawwidth-@viewport_x)/2.0, (@drawheight-@viewport_y)/2.0) do
         @battlestage.draw_bg
