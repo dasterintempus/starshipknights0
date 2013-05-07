@@ -1,0 +1,14 @@
+MY WORK
+  Program source code released under the MIT License: http://opensource.org/licenses/MIT
+  Images (gfx/) released under the following Creative Commons license, attributed to me (Scott Buettner, aka Dasterin): http://creativecommons.org/licenses/by-sa/3.0/
+  Sounds (sfx/) released under the same license as Images
+    Note that the sounds were generated via SFXR http://www.drpetter.se/project_sfxr.html and BFXR http://www.bfxr.net/
+    This doesn't have any license complications as far as I know, I just wanted to link those tools
+  Background images (images found in stages/) were found on a Google image source, license unknown.
+
+WORKS OF OTHERS
+  The music files (bgm/) were created from MIDIs released under Creative Commons license by their artist, 'Morusque', found here: http://ccmixter.org/files/Nurykabe/10176
+  The MIDI files were converted to OGGs via a SoundFont found here: http://packages.debian.org/squeeze/fluid-soundfont-gm
+
+  According to the package maintainer's copyright file ( http://ftp-master.metadata.debian.org/changelogs//main/f/fluid-soundfont/fluid-soundfont_3.1-5_copyright ),
+  the SoundFont is released under MIT, therefore I'm going to assume the MIDIs' resulting sound files are under the same license as the MIDIs themselves, and attribute them to Morusque
