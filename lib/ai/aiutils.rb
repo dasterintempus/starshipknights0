@@ -10,7 +10,7 @@ module StarshipKnights
       return nil
     end
     
-    def self.is_aimed_at(aimer, target, fuzz=3.5)
+    def self.is_aimed_at(aimer, target, fuzz=10)
       angle = Util.angle(aimer.x, aimer.y, target.x, target.y)
       return (angle - aimer.angle).abs <= fuzz
     end

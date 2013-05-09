@@ -6,7 +6,7 @@ module StarshipKnights
       class << self
         attr_accessor :shootingproperties, :firesound
       end
-      @shootingproperties = {:cooldown => 0.07}
+      @shootingproperties = {:cooldown => 0.15}
       @firesound = "dak"
       
       def configure(opts)
