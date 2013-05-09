@@ -9,7 +9,16 @@ module StarshipKnights
       def configure(opts)
         @color = opts["color"] || "gray"
         opts["imagename"] ||= "rndblockenemy"+@color
-        opts["priweptypename"] ||= "rapidshot"
+        case @color
+          when "gray"
+            opts["priweptypename"] ||= "enemyrapidshot"
+          when "yellow"
+            opts["priweptypename"] ||= "enemyrailshot"
+          when "fuschia"
+            opts["priweptypename"] ||= "enemytriangleshot"
+          when "cyan"
+            opts["priweptypename"] ||= "enemytwinlasershot"
+        end
         #opts["weaponcdtimer"] ||= 0.35
         #@altshottype = "spreadshot"
         opts["turnspeed"] ||= 225.0

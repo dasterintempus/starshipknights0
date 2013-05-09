@@ -1,4 +1,5 @@
 require 'battleentity'
+require 'allentities'
 
 include Gosu
 module StarshipKnights
