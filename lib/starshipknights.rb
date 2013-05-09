@@ -29,5 +29,5 @@ end
 #require_dir "./application"
 
 module StarshipKnights
-  VERSION = "0.0.3"
+  VERSION = "0.0.4"
 end

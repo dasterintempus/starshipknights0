@@ -1,12 +1,12 @@
 require 'battlestage'
-require 'battleai'
+require 'enemymanager'
 
 include Gosu
 module StarshipKnights
 
   class BattleStageAppState < AppState
     
-    attr_reader :battlestage, :pc
+    attr_reader :battlestage, :pcid
     attr_reader :camera_x, :camera_y, :viewport_x, :viewport_y
     
     def initialize(app, drawwidth, drawheight, enemies, conf=Hash.new)

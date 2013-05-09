@@ -1,4 +1,4 @@
-require 'battleai'
+require 'allaipilots'
 
 include Gosu
 module StarshipKnights
@@ -14,17 +14,19 @@ module StarshipKnights
       
       enemies.each do |edef|
         eopts = edef["eopts"] || Hash.new
-        aiopts = edef["aiopts"] || Hash.new
+        #aiopts = edef["aiopts"] || Hash.new
         
         params = edef["params"]
         
         shipid = @battlestage.spawn(edef["klass"], eopts, params["teamid"], nil, params["x"], params["y"], params["angle"])
-        ai = BattleAI.new(shipid, @battlestage)
-        edef["aipatterns"].each do |patternklass|
-          ai.extend(AIPatterns.all[patternklass])
-        end
-        ai.configure(aiopts)
-        ai.setup
+        ai = AIPilots.all["simple"].new(shipid, @battlestage, "whirla")
+        #ai.change_state("zigzag")
+        #ai = BattleAI.new(shipid, @battlestage)
+        #edef["aipatterns"].each do |patternklass|
+        #  ai.extend(AIPatterns.all[patternklass])
+        #end
+        #ai.configure(aiopts)
+        #ai.setup
         
         @enemy_ais[shipid] = ai
         @enemy_ids << shipid
@@ -35,7 +37,12 @@ module StarshipKnights
       @enemy_ais.each_value do |ai|
         ai.think(dt)
       end
+      cleanupdead
       checkforalldead
+    end
+    
+    def cleanupdead
+      @enemy_ais.keep_if { |k,v| @battlestage.get_by_id(k) }
     end
     
     def checkforalldead
