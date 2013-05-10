@@ -19,7 +19,7 @@ module StarshipKnights
         params = edef["params"]
         
         shipid = @battlestage.spawn(edef["klass"], eopts, params["teamid"], nil, params["x"], params["y"], params["angle"])
-        ai = AIPilots.all["simple"].new(shipid, @battlestage, params["state"] || "whirla")
+        ai = AIPilots.all[edef["ai"]].new(shipid, @battlestage, *edef["aiopts"])
         #ai.change_state("zigzag")
         #ai = BattleAI.new(shipid, @battlestage)
         #edef["aipatterns"].each do |patternklass|
