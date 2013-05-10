@@ -10,7 +10,7 @@ module StarshipKnights
       def initialize(shipid, battlestage, timertoturn=2.5)
         super(shipid, battlestage)
         @timertoturn = timertoturn
-        @timetoturn = @timertoturn
+        @timetoturn = 0
         
         @turntime = 0.0
         @lastturndir = 1
@@ -23,18 +23,19 @@ module StarshipKnights
         if @turntime > 0.0 then #turning left
           @turntime -= dt
           @turntime = 0.0 if @turntime < 0.0
-          add_input("left")
+          #add_input("left")
         elsif @turntime < 0.0 then #turning right
           @turntime += dt
           @turntime = 0.0 if @turntime > 0.0
-          add_input("right")
+          #add_input("left")
         else
           @timetoturn -= dt
-          add_input("thrust") if @timetoturn < @timertoturn/2.0
-          add_input("rthrust") if @timetoturn >= @timertoturn/2.0
+          add_input("thrust")# if @timetoturn < @timertoturn/2.0
+          #add_input("rthrust") if @timetoturn >= @timertoturn/2.0
           if @timetoturn <= 0.0
             @timetoturn = @timertoturn
             @turntime = @lastturndir * @turntimer
+            me.turn(180.0)
             @lastturndir = -@lastturndir
           end
         end

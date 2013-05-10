@@ -1,3 +1,4 @@
+require 'aidriver'
 require 'hasweapons'
 require 'hashealth'
 require 'takesdamagecollisions'
@@ -5,6 +6,7 @@ require 'takesdamagecollisions'
 module StarshipKnights
   module EntityTypes
     class Enemy < StarshipKnights::BattleEntity
+      include StarshipKnights::Components::AIDriver
       include StarshipKnights::Components::HasHealth
       include StarshipKnights::Components::HasWeapons
       include StarshipKnights::Components::TakesDamageCollisions
