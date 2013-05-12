@@ -20,7 +20,7 @@ module StarshipKnights
         opts["hits"] ||= 2
         opts["speed"] ||= 535.0
         opts["inheritance"] ||= 0.05
-        opts["damage"] ||= 0.25
+        opts["damage"] ||= 0.25 + $game.difficulty * 0.05
         
         super(opts)
       end

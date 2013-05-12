@@ -41,7 +41,9 @@ module StarshipKnights
       return unless spawngroup
       portal = @battlestage.get_by_id(portalid)
       return unless portal
-      spawngroup["count"].times do
+      count = spawngroup["count"]
+      count = (count*1.35).floor if $game.difficulty > 2
+      count.times do
         shipid = portal.spawn(spawngroup["klass"], spawngroup["eopts"] || Hash.new)
         ai = AIPilots.all[spawngroup["ai"]].new(shipid, @battlestage, *spawngroup["aiopts"])
         

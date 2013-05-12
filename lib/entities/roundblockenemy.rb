@@ -28,8 +28,8 @@ module StarshipKnights
         opts["reversespeed"] ||= 120 #opts["maxspeed"] * 1.0/2.0
         #@next_cd = 0.14
         #@next_alt_cd = 0.75
-        opts["maxhealth"] = 4.0
-        opts["damage"] = 4.0
+        opts["maxhealth"] = 4.0 + $game.difficulty * 1.15
+        opts["damage"] = 3.0 + $game.difficulty * 0.85
         super(opts)
       end
       

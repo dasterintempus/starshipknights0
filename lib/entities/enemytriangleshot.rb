@@ -18,7 +18,7 @@ module StarshipKnights
         end
         opts["lifetimer"] ||= 0.45
         opts["hits"] ||= 1
-        opts["damage"] ||= 1.5
+        opts["damage"] ||= 1.5 + $game.difficulty * 0.10
         opts["speed"] ||= 550.0
         opts["inheritance"] ||= 0.175
         

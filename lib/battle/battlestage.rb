@@ -31,7 +31,7 @@ module StarshipKnights
       
       @timefactor = 1.0
       
-      @prng = Random.new
+      @prng = Random.new(Time.now.to_f)
     
       @inputs = Hash.new {|h,k| h[k] = InputState.new}
     end
