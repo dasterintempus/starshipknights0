@@ -15,31 +15,43 @@ module StarshipKnights
       @enemy_ids = Array.new
       @enemy_ais = Hash.new
       
-      @portalwaves = Hash.new
+      @portalgroups = Hash.new
       
-      @nextwavedelay = 0
-      @wavenum = 0
+      @nextwavedelay = 3.5
+      @wavenum = -1
     end
     
-    def openportal(x, y, wave)
-      portalid = @battlestage.spawn("enemyportal", {"lifetimer" => wave.count*2.0}, 1, nil, x, y, 0)
-      @portalwaves[portalid] = wave
+    def startwave(wavedef)
+      wavedef["portals"].each do |portaldef|
+        x = portaldef["x"]
+        y = portaldef["y"]
+        x = @battlestage.xsize + x if x < 0
+        y = @battlestage.ysize + y if y < 0
+        openportal(x, y, portaldef["spawns"])
+      end
+    end
+    
+    def openportal(x, y, spawngroups)
+      portalid = @battlestage.spawn("enemyportal", {"lifetimer" => spawngroups.count*1.5}, 1, nil, x, y, 0)
+      @portalgroups[portalid] = spawngroups
     end
     
     def spawnfromportal(portalid)
-      enemydef = @portalwaves[portalid].pop
-      return unless enemydef
+      spawngroup = @portalgroups[portalid].pop
+      return unless spawngroup
       portal = @battlestage.get_by_id(portalid)
       return unless portal
-      shipid = portal.spawn(enemydef["klass"], enemydef["eopts"] || Hash.new)
-      ai = AIPilots.all[enemydef["ai"]].new(shipid, @battlestage, *enemydef["aiopts"])
-      
-      @enemy_ais[shipid] = ai
-      @enemy_ids << shipid
+      spawngroup["count"].times do
+        shipid = portal.spawn(spawngroup["klass"], spawngroup["eopts"] || Hash.new)
+        ai = AIPilots.all[spawngroup["ai"]].new(shipid, @battlestage, *spawngroup["aiopts"])
+        
+        @enemy_ais[shipid] = ai
+        @enemy_ids << shipid
+      end
     end
     
     def update(dt)
-      @nextwavedelay -= dt unless @nextwavedelay <= 0
+      @nextwavedelay -= dt if @nextwavedelay > 0 and alldead?
       @enemy_ais.each_value do |ai|
         ai.think(dt) if @battlestage.get_by_id(ai.shipid)
       end
@@ -50,7 +62,7 @@ module StarshipKnights
     
     def checkonportals(dt)
       dead = []
-      @portalwaves.each_key do |id|
+      @portalgroups.each_key do |id|
         portal = @battlestage.get_by_id(id)
         if portal then
           if portal.lifetimer/portal.lifetime >= 2 then
@@ -72,16 +84,15 @@ module StarshipKnights
     
     def checkforalldead
       if alldead? then
-        if @wavenum <= @waves.count then
-          if @nextwavedelay <= 0 then
-            x = @battlestage.roll(@battlestage.xsize - 200) + 100
-            y = @battlestage.roll(@battlestage.ysize - 200) + 100
-            openportal(x, y, @waves[@wavenum])
-            @wavenum += 1
-            @nextwavedelay = 10
+        if @nextwavedelay <= 0 then
+          @wavenum += 1
+          $game.score += @waves[@wavenum-1]["score"] if @wavenum > 0
+          if @wavenum < @waves.count then
+            startwave(@waves[@wavenum])
+            @nextwavedelay = 3.5
+          else
+            @parent.winbattle
           end
-        else
-          @parent.winbattle
         end
       end
     end

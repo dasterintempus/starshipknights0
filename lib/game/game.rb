@@ -7,10 +7,11 @@ module StarshipKnights
   class Game
     
     attr_reader :playeractiveship, :lastbattlestatus
-    attr_accessor :difficulty
+    attr_accessor :difficulty, :score
     def initialize
       @playeractiveship = nil
       @lastbattlestatus = 0
+      @score = 0
     end
     
     def selectship(ship)
