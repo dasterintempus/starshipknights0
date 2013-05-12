@@ -35,7 +35,7 @@ module StarshipKnights
                 return
               end
             end
-            if not oci[:weapon] then
+            if not oci[:weapon] and not oci[:portal] then
               hit(other)
               return
             end

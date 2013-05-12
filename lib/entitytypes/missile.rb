@@ -41,8 +41,10 @@ module StarshipKnights
           if has_hits then
             oci = other.collideinfo
             if oci[:missile] or not oci[:weapon] then
-              hit(other)
-              return
+              if not oci[:portal] then
+                hit(other)
+                return
+              end
             end
           end
         end

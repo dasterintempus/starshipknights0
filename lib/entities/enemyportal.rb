@@ -26,6 +26,10 @@ module StarshipKnights
         super
       end
       
+      def collideinfo
+        return super.merge({:portal => true})
+      end
+      
       def spawn(shipname, opts=Hash.new)
         spawnangle = @stage.roll(360)
         spawndist = @stage.roll(60) + 25
