@@ -2,4 +2,5 @@
 *.gemspec
 build.rb
 *.exe
-starshipknightsdist.rbw
+*.log
+*tmp*
