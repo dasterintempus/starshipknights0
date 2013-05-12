@@ -19,14 +19,14 @@ module StarshipKnights
     def start_next_stage
       #temporary hack
       conf = nil
-      enemies = nil
+      waves = nil
       File.open("./stages/teststage.conf", "r") do |f|
         data = JSON.load(f)
-        enemies = data["enemies"]
+        waves = data["waves"]
         conf = data["conf"]
       end
       
-      @app.add_state BattleStageAppState.new(@app, @drawwidth, @drawheight, enemies, conf)
+      @app.add_state BattleStageAppState.new(@app, @drawwidth, @drawheight, waves, conf)
     end
   end
   

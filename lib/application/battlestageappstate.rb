@@ -9,11 +9,11 @@ module StarshipKnights
     attr_reader :battlestage, :pcid
     attr_reader :camera_x, :camera_y, :viewport_x, :viewport_y
     
-    def initialize(app, drawwidth, drawheight, enemies, conf=Hash.new)
+    def initialize(app, drawwidth, drawheight, waves, conf=Hash.new)
       super(app, drawwidth, drawheight)
       @battlestage = BattleStage.new(self, conf)
       @pcid = $game.spawnplayership(@battlestage, @battlestage.xsize/2.0, @battlestage.ysize*2.0/3.0, 270)
-      @enemymanager = EnemyManager.new(self, $game.difficulty, @battlestage, enemies)
+      @enemymanager = EnemyManager.new(self, $game.difficulty, @battlestage, waves)
       
       @viewport_x = drawwidth
       @viewport_y = drawheight

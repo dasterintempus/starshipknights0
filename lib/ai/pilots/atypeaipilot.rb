@@ -12,31 +12,24 @@ module StarshipKnights
         @timertoturn = timertoturn
         @timetoturn = 0
         
-        @turntime = 0.0
-        @lastturndir = 1
+        #@turntime = 0.0
+        
+        #@lastturndir = 1
       end
       
       def think(dt)
         super
-        @turntimer ||= 180.0/me.turnspeed if me
+        #@turntimer ||= 180.0/me.turnspeed if me
+        @newangle ||= me.angle
         
-        if @turntime > 0.0 then #turning left
-          @turntime -= dt
-          @turntime = 0.0 if @turntime < 0.0
-          #add_input("left")
-        elsif @turntime < 0.0 then #turning right
-          @turntime += dt
-          @turntime = 0.0 if @turntime > 0.0
-          #add_input("left")
-        else
+        if me.angle == @newangle then #turning
           @timetoturn -= dt
           add_input("thrust")# if @timetoturn < @timertoturn/2.0
           #add_input("rthrust") if @timetoturn >= @timertoturn/2.0
           if @timetoturn <= 0.0
             @timetoturn = @timertoturn
-            @turntime = @lastturndir * @turntimer
+            @newangle = (me.angle + 180.0) % 360.0
             me.turn(180.0)
-            @lastturndir = -@lastturndir
           end
         end
         

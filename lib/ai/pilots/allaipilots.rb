@@ -1,4 +1,5 @@
 require 'atypeaipilot'
+require 'btypeaipilot'
 
 include Gosu
 module StarshipKnights
@@ -7,6 +8,7 @@ module StarshipKnights
     def self.all
       out = Hash.new
       out["atype"] = StarshipKnights::AIPilots::AType
+      out["btype"] = StarshipKnights::AIPilots::BType
       return out
     end
   end

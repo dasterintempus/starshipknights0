@@ -25,6 +25,7 @@ require 'enemyrailshot'
 require 'enemyrapidshot'
 require 'enemytriangleshot'
 require 'enemytwinlasershot'
+require 'enemyportal'
 
 include Gosu
 module StarshipKnights
@@ -70,6 +71,8 @@ module StarshipKnights
       out["enemyrapidshot"] = StarshipKnights::Entities::EnemyRapidShot
       out["enemytriangleshot"] = StarshipKnights::Entities::EnemyTriangleShot
       out["enemytwinlasershot"] = StarshipKnights::Entities::EnemyTwinLaserShot
+      
+      out["enemyportal"] = StarshipKnights::Entities::EnemyPortal
       
       return out
     end
