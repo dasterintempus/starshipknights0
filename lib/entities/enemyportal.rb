@@ -28,7 +28,7 @@ module StarshipKnights
       
       def spawn(shipname, opts=Hash.new)
         spawnangle = @stage.roll(360)
-        spawndist = @stage.roll(150) + 15
+        spawndist = @stage.roll(60) + 25
         x = @x + Math.cos(Util.rad(spawnangle)) * spawndist
         y = @y + Math.sin(Util.rad(spawnangle)) * spawndist
         play_sound(@spawnsound, @x, @y)
