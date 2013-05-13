@@ -1,5 +1,6 @@
 require 'atypeaipilot'
 require 'btypeaipilot'
+require 'ctypeaipilot'
 
 include Gosu
 module StarshipKnights
@@ -9,6 +10,7 @@ module StarshipKnights
       out = Hash.new
       out["atype"] = StarshipKnights::AIPilots::AType
       out["btype"] = StarshipKnights::AIPilots::BType
+      out["ctype"] = StarshipKnights::AIPilots::CType
       return out
     end
   end
