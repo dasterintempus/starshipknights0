@@ -11,13 +11,14 @@ module StarshipKnights
       include StarshipKnights::Components::HasWeapons
       include StarshipKnights::Components::TakesDamageCollisions
     
-      attr_reader :damage
+      attr_reader :damage, :scorevalue
       
       def configure(opts)
         opts["radius"] ||= 10.0
         opts["hitsound"] ||= "hit"
         opts["diesound"] ||= "shipdie"
         @damage = opts["damage"]
+        @scorevalue = opts["scorevalue"]
 
         super(opts)
       end
@@ -34,6 +35,11 @@ module StarshipKnights
           die if other.is_ship
           die if oci[:shield]
         end
+        super
+      end
+      
+      def die
+        $game.score += @scorevalue
         super
       end
       

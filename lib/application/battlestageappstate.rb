@@ -21,6 +21,8 @@ module StarshipKnights
       @camera_x = 0
       @camera_y = 0
       
+      @scoretagimg = Gosu::Image.from_text(@app, "Score:", "./font/PressStart2P.ttf", 14, 2, 100, :left)
+      
       @app.play_music("battle01", true)
     end
     
@@ -176,7 +178,14 @@ module StarshipKnights
     def draw_hud
       draw_minimap
       draw_status
+      draw_score
       #draw_status_indicator
+    end
+    
+    def draw_score
+      textimg = Gosu::Image.from_text(@app, $game.score.to_s, "./font/PressStart2P.ttf", 14, 2, 100, :right)
+      @scoretagimg.draw(0, 0, 10)
+      textimg.draw(110, 0, 10)
     end
     
     def draw_status

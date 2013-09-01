@@ -12,12 +12,16 @@ module StarshipKnights
         case @color
           when "gray"
             opts["priweptypename"] ||= "enemyrapidshot"
+            opts["scorevalue"] ||= 10
           when "yellow"
             opts["priweptypename"] ||= "enemyrailshot"
+            opts["scorevalue"] ||= 15
           when "fuschia"
             opts["priweptypename"] ||= "enemytriangleshot"
+            opts["scorevalue"] ||= 15
           when "cyan"
             opts["priweptypename"] ||= "enemytwinlasershot"
+            opts["scorevalue"] ||= 15
         end
         #opts["weaponcdtimer"] ||= 0.35
         #@altshottype = "spreadshot"
