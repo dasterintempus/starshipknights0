@@ -7,7 +7,7 @@ module StarshipKnights
     
     def initialize(app, drawwidth, drawheight)
       @diffoptions = ["Easy", "Medium", "Hard", "WTF"]
-      super(app, drawwidth, drawheight, @diffoptions)
+      super(app, drawwidth, drawheight, @diffoptions, "Select Difficulty")
     end
   
     def select_option

@@ -2,7 +2,7 @@ module StarshipKnights
 
   module Loadout
     def self.ship_names
-      return ["Phoenix", "Minotaur", "Kitsune", "Wyvern", "Jotunn"]#, "Djinn"]
+      return ["Phoenix", "Centaur", "Kitsune", "Wyvern", "Leviathan"]#, "Djinn"]
     end
     
     def self.phoenix_loadout
@@ -11,7 +11,7 @@ module StarshipKnights
               "Special" => ["Afterburner"]}
     end
     
-    def self.minotaur_loadout
+    def self.centaur_loadout
       return {"Primary" => ["RingShot", "TriBeam"],
               "Secondary" => ["Rocket"],
               "Special" => ["ShieldBubble"]}
@@ -29,7 +29,7 @@ module StarshipKnights
               "Special" => ["Shockwave"]}
     end
     
-    def self.jotunn_loadout
+    def self.leviathan_loadout
       return {"Primary" => ["TriangleShot", "RailCannon"],
               "Secondary" => ["Torpedo"],
               "Special" => ["TurretMode"]}
@@ -45,7 +45,7 @@ module StarshipKnights
       return ["TwinLaserShot", "WingShot", "Afterburner"]
     end
     
-    def self.minotaur_equip_default
+    def self.centaur_equip_default
       return ["RingShot", "Rocket", "ShieldBubble"]
     end
     
@@ -57,7 +57,7 @@ module StarshipKnights
       return ["WaveShot", "ChargeShot", "Shockwave"]
     end
     
-    def self.jotunn_equip_default
+    def self.leviathan_equip_default
       return ["TriangleShot", "Torpedo", "TurretMode"]
     end
     

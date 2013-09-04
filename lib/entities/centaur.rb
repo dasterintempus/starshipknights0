@@ -2,7 +2,7 @@ require 'ship'
 
 module StarshipKnights
   module Entities
-    class Minotaur < StarshipKnights::EntityTypes::Ship
+    class Centaur < StarshipKnights::EntityTypes::Ship
       
       def configure(opts)
         if @teamid == 0 then
@@ -67,12 +67,12 @@ module StarshipKnights
       end
       
       def to_s
-        return "Pegasus " + super
+        return "Centaur " + super
       end
       
       def create_shield
         opts = Hash.new
-        @stage.spawn("minotaurshield", opts, @teamid, @id, @x, @y, 0.0)
+        @stage.spawn("centaurshield", opts, @teamid, @id, @x, @y, 0.0)
       end
       
       def get_shield

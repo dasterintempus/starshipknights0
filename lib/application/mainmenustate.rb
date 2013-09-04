@@ -9,14 +9,14 @@ module StarshipKnights
   
     def initialize(app, drawwidth, drawheight)
       options = ["Play", "Quit"]
-      super(app, drawwidth, drawheight, options)
-      @logo = Gosu::Image.new(app, "./gfx/logo.png", true)
+      logo = Gosu::Image.new(app, "./gfx/logo.png", true)
+      super(app, drawwidth, drawheight, options, logo)
     end
     
-    def draw
-      super
-      @logo.draw(250, 10, 30)
-    end
+    #def draw
+    #  super
+    #  @logo.draw(250, 10, 30)
+    #end
     
     def select_option
       case @sel_opt

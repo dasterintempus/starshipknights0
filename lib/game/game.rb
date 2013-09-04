@@ -29,6 +29,10 @@ module StarshipKnights
     def winbattle
       @lastbattlestatus = 1
     end
+    
+    def resetbattle
+      @lastbattlestatus = 0
+    end
   end
   
 end

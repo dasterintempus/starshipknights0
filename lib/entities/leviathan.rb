@@ -2,7 +2,7 @@ require 'ship'
 
 module StarshipKnights
   module Entities
-    class Jotunn < StarshipKnights::EntityTypes::Ship
+    class Leviathan < StarshipKnights::EntityTypes::Ship
       attr_reader :turretmode
       
       def configure(opts)
@@ -63,7 +63,7 @@ module StarshipKnights
       end
       
       def to_s
-        return "Jotunn " + super
+        return "Leviathan " + super
       end
       
       def knockback(other, power)

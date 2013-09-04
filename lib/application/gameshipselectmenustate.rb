@@ -7,8 +7,8 @@ module StarshipKnights
   class GameShipSelectMenuState < AppMenuState
     
     def initialize(app, drawwidth, drawheight)
-      @shipoptions = ["Phoenix", "Kitsune", "Minotaur", "Wyvern", "Jotunn"]
-      super(app, drawwidth, drawheight, @shipoptions)
+      @shipoptions = ["Phoenix", "Kitsune", "Centaur", "Wyvern", "Leviathan"]
+      super(app, drawwidth, drawheight, @shipoptions, "Select Ship")
     end
   
     def select_option

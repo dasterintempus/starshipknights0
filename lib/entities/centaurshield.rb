@@ -2,7 +2,7 @@ require 'shield'
 
 module StarshipKnights
   module Entities
-    class MinotaurShield < StarshipKnights::EntityTypes::Shield
+    class CentaurShield < StarshipKnights::EntityTypes::Shield
     
       def configure(opts)
         opts["radius"] ||= 25.0
@@ -18,7 +18,7 @@ module StarshipKnights
       end
       
       def to_s
-        return "PegasusShield " + super
+        return "CentaurShield " + super
       end
       
     end

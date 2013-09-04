@@ -8,8 +8,8 @@ require 'kitsune'
 require 'ringshot'
 require 'tribeam'
 require 'rocket'
-require 'minotaurshield'
-require 'minotaur'
+require 'centaurshield'
+require 'centaur'
 require 'waveshot'
 require 'disruptshot'
 require 'chargeshot'
@@ -18,7 +18,7 @@ require 'wyvern'
 require 'triangleshot'
 require 'torpedo'
 require 'railcannon'
-require 'jotunn'
+require 'leviathan'
 require 'explosionreal'
 require 'roundblockenemy'
 require 'enemyrailshot'
@@ -45,8 +45,8 @@ module StarshipKnights
       out["ringshot"] = StarshipKnights::Entities::RingShot
       out["tribeam"] = StarshipKnights::Entities::TriBeam
       out["rocket"] = StarshipKnights::Entities::Rocket
-      out["minotaurshield"] = StarshipKnights::Entities::MinotaurShield
-      out["minotaur"] = StarshipKnights::Entities::Minotaur
+      out["centaurshield"] = StarshipKnights::Entities::CentaurShield
+      out["centaur"] = StarshipKnights::Entities::Centaur
       
       out["waveshot"] = StarshipKnights::Entities::WaveShot
       out["disruptshot"] = StarshipKnights::Entities::DisruptShot
@@ -57,7 +57,7 @@ module StarshipKnights
       out["triangleshot"] = StarshipKnights::Entities::TriangleShot
       out["torpedo"] = StarshipKnights::Entities::Torpedo
       out["railcannon"] = StarshipKnights::Entities::RailCannon
-      out["jotunn"] = StarshipKnights::Entities::Jotunn
+      out["leviathan"] = StarshipKnights::Entities::Leviathan
       
       #out["railshot"] = StarshipKnights::Entities::RailShot
       #out["slowmine"] = StarshipKnights::Entities::SlowMine

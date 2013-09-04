@@ -54,6 +54,7 @@ module StarshipKnights
       $game.losebattle
       @app.stop_music
       @app.pop_state
+      @app.add_state GameOverMenuState.new(@app, @drawwidth, @drawheight)
     end
     
     def set_cam(x,y,center=true)
