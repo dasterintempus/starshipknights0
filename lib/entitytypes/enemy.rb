@@ -39,7 +39,7 @@ module StarshipKnights
       end
       
       def die
-        $game.score += @scorevalue
+        $game.tempscore += @scorevalue
         super
       end
       

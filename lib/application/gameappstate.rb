@@ -9,7 +9,7 @@ module StarshipKnights
     end
     
     def on_active
-      if $game.lastbattlestatus == 0 then
+      if $game.lastbattlestatus >= 0 then
         start_next_stage
       else
         @app.pop_state
@@ -27,6 +27,7 @@ module StarshipKnights
       end
       
       @app.add_state BattleStageAppState.new(@app, @drawwidth, @drawheight, waves, conf)
+      @app.add_state LevelChangeAppState.new(@app, @drawwidth, @drawheight, $game.currentlevel)
     end
   end
   

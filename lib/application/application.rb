@@ -106,11 +106,12 @@ module StarshipKnights
     end
     
     def draw
-      done = false
       @states.reverse_each do |state|
+        done = false
         clip_to(0,0,state.drawwidth,state.drawheight) do
           state.draw
           done = true unless state.show_behind
+          #puts "done: #{done}"
         end
         break if done
       end

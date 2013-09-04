@@ -24,6 +24,8 @@ module StarshipKnights
       @scoretagimg = Gosu::Image.from_text(@app, "Score:", "./font/PressStart2P.ttf", 14, 2, 100, :left)
       
       @app.play_music("battle01", true)
+      
+      set_cam(@battlestage.xsize/2.0, @battlestage.ysize*2.0/3.0)
     end
     
     def pc
@@ -65,6 +67,9 @@ module StarshipKnights
         @camera_x = x
         @camera_y = y
       end
+      
+      @camera_x = Util.clamp(@camera_x, 0, @battlestage.xsize - @viewport_x)
+      @camera_y = Util.clamp(@camera_y, 0, @battlestage.ysize - @viewport_y)
     end
     
     def scroll_cam(x,y,center=true)
@@ -83,6 +88,9 @@ module StarshipKnights
       end
       @camera_x = 0.90 * @camera_x + 0.10 * targ_x
       @camera_y = 0.90 * @camera_y + 0.10 * targ_y
+      
+      @camera_x = Util.clamp(@camera_x, 0, @battlestage.xsize - @viewport_x)
+      @camera_y = Util.clamp(@camera_y, 0, @battlestage.ysize - @viewport_y)
     end
     
     def update(dt)
@@ -96,19 +104,16 @@ module StarshipKnights
       @enemymanager.update(dt)
       
       set_cam(pc.x, pc.y)
-      @camera_x = Util.clamp(@camera_x, 0, @battlestage.xsize - @viewport_x)
-      @camera_y = Util.clamp(@camera_y, 0, @battlestage.ysize - @viewport_y)
     end
     
     def draw
-      return unless pc
       draw_hud
       @app.translate((@drawwidth-@viewport_x)/2.0, (@drawheight-@viewport_y)/2.0) do
         @battlestage.draw_bg
         @app.translate(-@camera_x,-@camera_y) do #ingame camera
           @battlestage.draw
           
-          draw_bars
+          draw_bars if pc
         end
       end
     end
@@ -178,13 +183,14 @@ module StarshipKnights
   
     def draw_hud
       draw_minimap
-      draw_status
+      draw_status if pc
       draw_score
       #draw_status_indicator
     end
     
     def draw_score
-      textimg = Gosu::Image.from_text(@app, $game.score.to_s, "./font/PressStart2P.ttf", 14, 2, 100, :right)
+      realscore = $game.score + $game.tempscore
+      textimg = Gosu::Image.from_text(@app, realscore.to_s, "./font/PressStart2P.ttf", 14, 2, 100, :right)
       @scoretagimg.draw(0, 0, 10)
       textimg.draw(110, 0, 10)
     end
