@@ -1,4 +1,4 @@
 Dependencies should only be Gosu ( http://www.libgosu.org/ )
 
 Run:
-`ruby starshipknights.rbw`
+`ruby starshipknights.rbw test`
