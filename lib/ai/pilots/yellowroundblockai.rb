@@ -5,7 +5,7 @@ require 'aiutils'
 include Gosu
 module StarshipKnights
   module AIPilots
-    class CType < BattleAIPilot
+    class YellowRoundBlock < BattleAIPilot
     
       def initialize(shipid, battlestage, lowturntimer=1.0, highturntimer=2.5)
         super(shipid, battlestage)

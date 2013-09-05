@@ -6,23 +6,22 @@ module StarshipKnights
   class EnemyManager
     attr_reader :nextspawnx, :nextspawny, :nextspawnt
     
-    def initialize(parent, difficulty, battlestage, waves)
+    def initialize(parent, difficulty, battlestage, leveldef)
       @parent = parent
       @difficulty = difficulty
       @battlestage = battlestage
-      @waves = waves
+      @leveldef = leveldef
       
       @enemy_ids = Array.new
       @enemy_ais = Hash.new
       
       @portalgroups = Hash.new
-      
-      @nextwavedelay = 3.5
-      @wavenum = -1
+      @portalsopen = 0
+      startlevel
     end
     
-    def startwave(wavedef)
-      wavedef["portals"].each do |portaldef|
+    def startlevel
+      @leveldef["portals"].each do |portaldef|
         x = portaldef["x"]
         y = portaldef["y"]
         x = @battlestage.xsize + x if x < 0
@@ -34,6 +33,7 @@ module StarshipKnights
     def openportal(x, y, spawngroups)
       portalid = @battlestage.spawn("enemyportal", {"lifetimer" => spawngroups.count*1.5}, 1, nil, x, y, 0)
       @portalgroups[portalid] = spawngroups
+      @portalsopen += 1
     end
     
     def spawnfromportal(portalid)
@@ -44,8 +44,9 @@ module StarshipKnights
       count = spawngroup["count"]
       count = (count*1.65).floor if $game.difficulty > 2
       count.times do
-        shipid = portal.spawn(spawngroup["klass"], spawngroup["eopts"] || Hash.new)
-        ai = AIPilots.all[spawngroup["ai"]].new(shipid, @battlestage, *spawngroup["aiopts"])
+        eopts = {"color" => spawngroup["color"]}
+        shipid = portal.spawn(spawngroup["klass"], eopts || Hash.new)
+        ai = AIPilots.all[spawngroup["klass"]][spawngroup["color"]].new(shipid, @battlestage)
         
         @enemy_ais[shipid] = ai
         @enemy_ids << shipid
@@ -53,7 +54,6 @@ module StarshipKnights
     end
     
     def update(dt)
-      @nextwavedelay -= dt if @nextwavedelay > 0 and alldead?
       @enemy_ais.each_value do |ai|
         ai.think(dt) if @battlestage.get_by_id(ai.shipid)
       end
@@ -76,7 +76,11 @@ module StarshipKnights
           end
         else
           dead << id
+          @portalsopen -= 1
         end
+      end
+      dead.each do |portal|
+        @portalgroups.delete(portal)
       end
     end
     
@@ -85,17 +89,9 @@ module StarshipKnights
     end
     
     def checkforalldead
+      #puts @portalsopen
       if alldead? then
-        if @nextwavedelay <= 0 then
-          @wavenum += 1
-          $game.score += @waves[@wavenum-1]["score"] if @wavenum > 0
-          if @wavenum < @waves.count then
-            startwave(@waves[@wavenum])
-            @nextwavedelay = 3.5
-          else
-            @parent.winbattle
-          end
-        end
+        @parent.winbattle if @portalsopen == 0
       end
     end
     

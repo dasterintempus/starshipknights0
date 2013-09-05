@@ -21,6 +21,7 @@ require 'railcannon'
 require 'leviathan'
 require 'explosionreal'
 require 'roundblockenemy'
+require 'rayenemy'
 require 'enemyrailshot'
 require 'enemyrapidshot'
 require 'enemytriangleshot'
@@ -80,6 +81,7 @@ module StarshipKnights
     def self.enemies
       out = Hash.new
       out["roundblock"] = StarshipKnights::Entities::RoundBlockEnemy
+      out["ray"] = StarshipKnights::Entities::RayEnemy
       return out
     end
   end

@@ -7,7 +7,7 @@ module StarshipKnights
       include StarshipKnights::Components::AccelMover
       include StarshipKnights::Components::Turner
       
-      attr_reader :thrustspeed
+      attr_accessor :thrustspeed
       
       def configure(opts)
         @thrustspeed = opts["thrustspeed"]

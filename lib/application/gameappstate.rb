@@ -17,16 +17,12 @@ module StarshipKnights
     end
     
     def start_next_stage
-      #temporary hack
-      conf = nil
-      waves = nil
-      File.open("./stages/teststage.conf", "r") do |f|
-        data = JSON.load(f)
-        waves = data["waves"]
-        conf = data["conf"]
+      leveldef = nil
+      File.open("./stages/stage#{$game.currentlevel}.conf", "r") do |f|
+       leveldef = JSON.load(f)
       end
       
-      @app.add_state BattleStageAppState.new(@app, @drawwidth, @drawheight, waves, conf)
+      @app.add_state BattleStageAppState.new(@app, @drawwidth, @drawheight, leveldef)
       @app.add_state LevelChangeAppState.new(@app, @drawwidth, @drawheight, $game.currentlevel)
     end
   end

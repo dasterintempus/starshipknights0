@@ -1,7 +1,7 @@
 module StarshipKnights
   module Components
     module Turner
-      attr_reader :turnspeed
+      attr_accessor :turnspeed
 
       def configure(opts)
         @turnspeed = opts["turnspeed"]
