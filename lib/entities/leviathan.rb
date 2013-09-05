@@ -6,11 +6,7 @@ module StarshipKnights
       attr_reader :turretmode
       
       def configure(opts)
-        if @teamid == 0 then
-          opts["imagename"] ||= "jotunnred"
-        elsif @teamid == 1 then
-          opts["imagename"] ||= "jotunnblue"
-        end
+        opts["imagename"] ||= "leviathan"
         if @equippedprimary == "triangleshot" then
           opts["priweptypename"] ||= "triangleshot"
           #opts["weaponcdtimer"] ||= 0.45

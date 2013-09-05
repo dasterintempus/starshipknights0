@@ -8,6 +8,7 @@ module StarshipKnights
     
     def initialize(app, drawwidth, drawheight)
       @shipoptions = ["Phoenix", "Kitsune", "Centaur", "Wyvern", "Leviathan"]
+      @shipoptions << "Thunderbird" if $game.omg["thunderbird"]
       super(app, drawwidth, drawheight, @shipoptions, "Select Ship")
     end
   

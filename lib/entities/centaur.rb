@@ -5,11 +5,7 @@ module StarshipKnights
     class Centaur < StarshipKnights::EntityTypes::Ship
       
       def configure(opts)
-        if @teamid == 0 then
-          opts["imagename"] ||= "minotaurred"
-        elsif @teamid == 1 then
-          opts["imagename"] ||= "minotaurblue"
-        end
+        opts["imagename"] ||= "centaur"
         if @equippedprimary == "ringshot" then
           opts["priweptypename"] ||= "ringshot"
           #opts["weaponcdtimer"] ||= 0.7

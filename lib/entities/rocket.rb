@@ -11,11 +11,7 @@ module StarshipKnights
       
       def configure(opts)
         opts["radius"] ||= 5.5
-        if @teamid == 0 then
-          opts["imagename"] ||= "rocketred"
-        elsif @teamid == 1 then
-          opts["imagename"] ||= "rocketblue"
-        end
+        opts["imagename"] ||= "rocket"
         opts["blastsound"] ||= "missileblastalt"
         opts["lifetimer"] ||= 1.5
         opts["damage"] ||= 2.5

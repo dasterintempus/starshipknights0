@@ -11,11 +11,7 @@ module StarshipKnights
       
       def configure(opts)
         opts["radius"] ||= 5.0
-        if @teamid == 0 then
-          opts["imagename"] ||= "twinlasershotred"
-        elsif @teamid == 1 then
-          opts["imagename"] ||= "twinlasershotblue"
-        end
+        opts["imagename"] ||= "enemytwinlasershot"
         opts["lifetimer"] ||= 0.75
         opts["hits"] ||= 1
         opts["damage"] ||= 1.75 + $game.difficulty * 0.10

@@ -6,11 +6,7 @@ module StarshipKnights
       include StarshipKnights::Components::Slider
     
       def configure(opts)
-        if @teamid == 0 then
-          opts["imagename"] ||= "kitsunered"
-        elsif @teamid == 1 then
-          opts["imagename"] ||= "kitsuneblue"
-        end
+        opts["imagename"] ||= "kitsune"
         opts["priweptypename"] ||= "rapidshot"
         #opts["weaponcdtimer"] ||= 0.14
         opts["secweptypename"] ||= "spreadshot"

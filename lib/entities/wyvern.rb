@@ -8,11 +8,7 @@ module StarshipKnights
       #attr_accessor :chargetime
       
       def configure(opts)
-        if @teamid == 0 then
-          opts["imagename"] ||= "wyvernred"
-        elsif @teamid == 1 then
-          opts["imagename"] ||= "wyvernblue"
-        end
+        opts["imagename"] ||= "wyvern"
         
         if @equippedprimary == "waveshot" then
           opts["priweptypename"] ||= "waveshot"

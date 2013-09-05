@@ -6,11 +6,7 @@ module StarshipKnights
     
       attr_reader :max_mine_count
       def configure(opts)
-        if @teamid == 0 then
-          opts["imagename"] ||= "djinnred"
-        elsif @teamid == 1 then
-          opts["imagename"] ||= "djinnblue"
-        end
+        opts["imagename"] ||= "djinn"
         opts["priweptypename"] ||= "railshot"
         #CD 1.25
         opts["secweptypename"] ||= "slowmine"

@@ -11,11 +11,7 @@ module StarshipKnights
     
       def configure(opts)
         opts["radius"] ||= 8.0
-        if @teamid == 0 then
-          opts["imagename"] ||= "slowminered"
-        elsif @teamid == 1 then
-          opts["imagename"] ||= "slowmineblue"
-        end
+        opts["imagename"] ||= "slowmine"
         opts["armingtimer"] ||= 0.35
         opts["triggersound"] ||= "slowmine"
         
