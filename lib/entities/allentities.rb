@@ -84,5 +84,6 @@ module StarshipKnights
       out["ray"] = StarshipKnights::Entities::RayEnemy
       return out
     end
+    
   end
 end

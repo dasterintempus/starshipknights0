@@ -17,6 +17,8 @@ module StarshipKnights
       
       @portalgroups = Hash.new
       @portalsopen = 0
+      @endtimer = 0
+      
       startlevel
     end
     
@@ -59,7 +61,7 @@ module StarshipKnights
       end
       cleanupdead
       checkonportals(dt)
-      checkforalldead
+      checkforalldead(dt)
     end
     
     def checkonportals(dt)
@@ -88,10 +90,14 @@ module StarshipKnights
       @enemy_ais.keep_if { |k,v| @battlestage.get_by_id(k) }
     end
     
-    def checkforalldead
+    def checkforalldead(dt)
       #puts @portalsopen
       if alldead? then
-        @parent.winbattle if @portalsopen == 0
+        if @portalsopen == 0 then
+          @parent.winbattle if @endtimer >= 7.5
+          @parent.app.play_music("victorytheme") if @endtimer == 0
+          @endtimer += dt
+        end
       end
     end
     

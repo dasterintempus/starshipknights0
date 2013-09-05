@@ -4,14 +4,18 @@ module StarshipKnights
   module Entities
     class RayEnemy < StarshipKnights::EntityTypes::ThrusterEnemy
       
+      def self.colorvalues
+        return {"cyan"=> 35}
+      end
+      
       def configure(opts)
         @color = opts["color"] || "cyan"
         opts["imagename"] ||= "rayenemy"+@color
         case @color
           when "cyan"
             opts["priweptypename"] ||= "enemyrailshot"
-            opts["scorevalue"] ||= 35
         end
+        opts["scorevalue"] ||= self.class.colorvalues[@color]
         opts["turnspeed"] ||= 30.0
         @maxturnspeed = opts["maxturnspeed"] || 60.0
         @minturnspeed = opts["minturnspeed"] || 15.0

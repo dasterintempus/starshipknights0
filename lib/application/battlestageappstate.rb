@@ -9,11 +9,11 @@ module StarshipKnights
     attr_reader :battlestage, :pcid
     attr_reader :camera_x, :camera_y, :viewport_x, :viewport_y
     
-    def initialize(app, drawwidth, drawheight, leveldef)
+    def initialize(app, drawwidth, drawheight)
       super(app, drawwidth, drawheight)
-      @battlestage = BattleStage.new(self, leveldef["conf"])
+      @battlestage = BattleStage.new(self, "night-sky.jpg")
       @pcid = $game.spawnplayership(@battlestage, @battlestage.xsize/2.0, @battlestage.ysize*2.0/3.0, 270)
-      @enemymanager = EnemyManager.new(self, $game.difficulty, @battlestage, leveldef)
+      @enemymanager = EnemyManager.new(self, $game.difficulty, @battlestage, $game.generatelevel(@battlestage.xsize, @battlestage.ysize))
       
       @viewport_x = drawwidth
       @viewport_y = drawheight
@@ -23,9 +23,9 @@ module StarshipKnights
       
       @scoretagimg = Gosu::Image.from_text(@app, "Score:", "./font/PressStart2P.ttf", 14, 2, 100, :left)
       
-      @app.play_music("battle01", true)
-      
       set_cam(@battlestage.xsize/2.0, @battlestage.ysize*2.0/3.0)
+      
+      @app.play_music("battle01", true)
     end
     
     def pc
@@ -94,6 +94,7 @@ module StarshipKnights
     end
     
     def update(dt)
+    
       @battlestage.tick(dt)
     
       unless pc then

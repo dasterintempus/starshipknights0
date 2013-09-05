@@ -17,12 +17,12 @@ module StarshipKnights
     end
     
     def start_next_stage
-      leveldef = nil
-      File.open("./stages/stage#{$game.currentlevel}.conf", "r") do |f|
-       leveldef = JSON.load(f)
-      end
+      #leveldef = nil
+      #File.open("./stages/stage#{$game.currentlevel}.conf", "r") do |f|
+      # leveldef = JSON.load(f)
+      #end
       
-      @app.add_state BattleStageAppState.new(@app, @drawwidth, @drawheight, leveldef)
+      @app.add_state BattleStageAppState.new(@app, @drawwidth, @drawheight)
       @app.add_state LevelChangeAppState.new(@app, @drawwidth, @drawheight, $game.currentlevel)
     end
   end

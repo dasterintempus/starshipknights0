@@ -11,17 +11,13 @@ module StarshipKnights
     attr_reader :current_tick
     attr_reader :parent
     
-    def initialize(parent, config=Hash.new)
+    def initialize(parent, bgfn)
       @parent = parent
-      @config = config
       
-      if @config.has_key? "bg" then
-        bgfn = @config["bg"]
-        @bgimage = Gosu::Image.new(@parent.app, bgfn, false)
-      end
-
-      @xsize = @config["xsize"] || @bgimage.width
-      @ysize = @config["ysize"] || @bgimage.height
+      @bgimage = Gosu::Image.new(@parent.app, "./stages/" + bgfn, false)
+      
+      @xsize = @bgimage.width
+      @ysize = @bgimage.height
       
       @next_ent_id = 0
       @entities = Hash.new

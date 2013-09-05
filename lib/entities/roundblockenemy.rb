@@ -6,23 +6,22 @@ module StarshipKnights
     class RoundBlockEnemy < StarshipKnights::EntityTypes::GliderEnemy
       include StarshipKnights::Components::Slider
       
+      def self.colorvalues
+        return {"cyan"=> 15, "yellow"=> 15, "fuschia"=> 15}
+      end
+      
       def configure(opts)
         @color = opts["color"] || "gray"
         opts["imagename"] ||= "rndblockenemy"+@color
         case @color
-          when "gray"
-            opts["priweptypename"] ||= "enemyrapidshot"
-            opts["scorevalue"] ||= 10
           when "yellow"
             opts["priweptypename"] ||= "enemyrailshot"
-            opts["scorevalue"] ||= 15
           when "fuschia"
             opts["priweptypename"] ||= "enemytriangleshot"
-            opts["scorevalue"] ||= 15
           when "cyan"
             opts["priweptypename"] ||= "enemytwinlasershot"
-            opts["scorevalue"] ||= 15
         end
+        opts["scorevalue"] ||= self.class.colorvalues[@color]
         #opts["weaponcdtimer"] ||= 0.35
         #@altshottype = "spreadshot"
         opts["turnspeed"] ||= 225.0
