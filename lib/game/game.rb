@@ -70,7 +70,7 @@ module StarshipKnights
       @tempscore = 0
       
       if @score >= 350 then
-        @omg["#{@shipname}_loadout"] = true
+        @omg["#{@shipname.downcase}_loadout"] = true
         writeOMG
       end
     end
