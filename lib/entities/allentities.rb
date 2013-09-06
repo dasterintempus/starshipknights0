@@ -66,9 +66,9 @@ module StarshipKnights
       @@all["railcannon"] = StarshipKnights::Entities::RailCannon
       @@all["leviathan"] = StarshipKnights::Entities::Leviathan
       
-      out["thunderbird"] = StarshipKnights::Entities::Thunderbird
-      out["lightningbolt"] = StarshipKnights::Entities::LightningBolt
-      out["thunderbirdshockwave"] = StarshipKnights::Entities::ThunderbirdShockwave
+      @@all["thunderbird"] = StarshipKnights::Entities::Thunderbird
+      @@all["lightningbolt"] = StarshipKnights::Entities::LightningBolt
+      @@all["thunderbirdshockwave"] = StarshipKnights::Entities::ThunderbirdShockwave
       
       
       #out["railshot"] = StarshipKnights::Entities::RailShot
