@@ -91,10 +91,12 @@ module StarshipKnights
         portals[0]["spawns"] = [{"klass"=> enemygroupcounts[0][0], "color"=> enemygroupcounts[0][1], "count"=> enemygroupcounts[0][2]}]
         
         #other enemies on the right
-        portals << { "x"=> width*3.0/4.0, "y"=> height/2.0 }
-        portals[1]["spawns"] = []
-        portals[1]["spawns"] << {"klass"=> enemygroupcounts[1][0], "color"=> enemygroupcounts[1][1], "count"=> enemygroupcounts[1][2]} if enemygroupcounts.length == 2
-        portals[1]["spawns"] << {"klass"=> enemygroupcounts[2][0], "color"=> enemygroupcounts[2][1], "count"=> enemygroupcounts[2][2]} if enemygroupcounts.length == 3
+        if enemygroupcounts.length >= 2 then
+          portals << { "x"=> width*3.0/4.0, "y"=> height/2.0 }
+          portals[1]["spawns"] = []
+          portals[1]["spawns"] << {"klass"=> enemygroupcounts[1][0], "color"=> enemygroupcounts[1][1], "count"=> enemygroupcounts[1][2]}
+          portals[1]["spawns"] << {"klass"=> enemygroupcounts[2][0], "color"=> enemygroupcounts[2][1], "count"=> enemygroupcounts[2][2]} if enemygroupcounts.length == 3
+        end
       when 3
         #triangle
         #topright
