@@ -31,59 +31,57 @@ require 'enemyportal'
 include Gosu
 module StarshipKnights
   module Entities
-    def self.all
-      out = Hash.new
+      @@enemies = Hash.new
+      @@enemies["roundblock"] = StarshipKnights::Entities::RoundBlockEnemy
+      @@enemies["ray"] = StarshipKnights::Entities::RayEnemy
+  
+      @@all = Hash.new
     
-      out["twinlasershot"] = StarshipKnights::Entities::TwinLaserShot
-      out["wingshot"] = StarshipKnights::Entities::WingShot
-      out["bomb"] = StarshipKnights::Entities::Bomb
-      out["phoenix"] = StarshipKnights::Entities::Phoenix
+      @@all["twinlasershot"] = StarshipKnights::Entities::TwinLaserShot
+      @@all["wingshot"] = StarshipKnights::Entities::WingShot
+      @@all["bomb"] = StarshipKnights::Entities::Bomb
+      @@all["phoenix"] = StarshipKnights::Entities::Phoenix
       
-      out["rapidshot"] = StarshipKnights::Entities::RapidShot
-      out["spreadshot"] = StarshipKnights::Entities::SpreadShot
-      out["kitsune"] = StarshipKnights::Entities::Kitsune
+      @@all["rapidshot"] = StarshipKnights::Entities::RapidShot
+      @@all["spreadshot"] = StarshipKnights::Entities::SpreadShot
+      @@all["kitsune"] = StarshipKnights::Entities::Kitsune
       
-      out["ringshot"] = StarshipKnights::Entities::RingShot
-      out["tribeam"] = StarshipKnights::Entities::TriBeam
-      out["rocket"] = StarshipKnights::Entities::Rocket
-      out["centaurshield"] = StarshipKnights::Entities::CentaurShield
-      out["centaur"] = StarshipKnights::Entities::Centaur
+      @@all["ringshot"] = StarshipKnights::Entities::RingShot
+      @@all["tribeam"] = StarshipKnights::Entities::TriBeam
+      @@all["rocket"] = StarshipKnights::Entities::Rocket
+      @@all["centaurshield"] = StarshipKnights::Entities::CentaurShield
+      @@all["centaur"] = StarshipKnights::Entities::Centaur
       
-      out["waveshot"] = StarshipKnights::Entities::WaveShot
-      out["disruptshot"] = StarshipKnights::Entities::DisruptShot
-      out["chargeshot"] = StarshipKnights::Entities::ChargeShot
-      out["wyvernshockwave"] = StarshipKnights::Entities::WyvernShockwave
-      out["wyvern"] = StarshipKnights::Entities::Wyvern
+      @@all["waveshot"] = StarshipKnights::Entities::WaveShot
+      @@all["disruptshot"] = StarshipKnights::Entities::DisruptShot
+      @@all["chargeshot"] = StarshipKnights::Entities::ChargeShot
+      @@all["wyvernshockwave"] = StarshipKnights::Entities::WyvernShockwave
+      @@all["wyvern"] = StarshipKnights::Entities::Wyvern
       
-      out["triangleshot"] = StarshipKnights::Entities::TriangleShot
-      out["torpedo"] = StarshipKnights::Entities::Torpedo
-      out["railcannon"] = StarshipKnights::Entities::RailCannon
-      out["leviathan"] = StarshipKnights::Entities::Leviathan
+      @@all["triangleshot"] = StarshipKnights::Entities::TriangleShot
+      @@all["torpedo"] = StarshipKnights::Entities::Torpedo
+      @@all["railcannon"] = StarshipKnights::Entities::RailCannon
+      @@all["leviathan"] = StarshipKnights::Entities::Leviathan
       
       #out["railshot"] = StarshipKnights::Entities::RailShot
       #out["slowmine"] = StarshipKnights::Entities::SlowMine
       #out["djinn"] = StarshipKnights::Entities::Djinn
       
-      out["explosion"] = StarshipKnights::Entities::ExplosionReal
+      @@all["explosion"] = StarshipKnights::Entities::ExplosionReal
       #out["asteroid"] = StarshipKnights::Entities::Asteroid
     
-      out.update(self.enemies)
-      out["enemyrailshot"] = StarshipKnights::Entities::EnemyRailShot
-      out["enemyrapidshot"] = StarshipKnights::Entities::EnemyRapidShot
-      out["enemytriangleshot"] = StarshipKnights::Entities::EnemyTriangleShot
-      out["enemytwinlasershot"] = StarshipKnights::Entities::EnemyTwinLaserShot
+      @@all.update(@@enemies)
+      @@all["enemyrailshot"] = StarshipKnights::Entities::EnemyRailShot
+      @@all["enemyrapidshot"] = StarshipKnights::Entities::EnemyRapidShot
+      @@all["enemytriangleshot"] = StarshipKnights::Entities::EnemyTriangleShot
+      @@all["enemytwinlasershot"] = StarshipKnights::Entities::EnemyTwinLaserShot
       
-      out["enemyportal"] = StarshipKnights::Entities::EnemyPortal
-      
-      return out
-    end
+      @@all["enemyportal"] = StarshipKnights::Entities::EnemyPortal
     
-    def self.enemies
-      out = Hash.new
-      out["roundblock"] = StarshipKnights::Entities::RoundBlockEnemy
-      out["ray"] = StarshipKnights::Entities::RayEnemy
-      return out
-    end
+      module_function
+      def all; @@all end
     
+      module_function
+      def enemies; @@enemies end
   end
 end

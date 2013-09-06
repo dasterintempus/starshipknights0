@@ -44,7 +44,20 @@ end
 
 #main
 test = false
+prof = false
 ARGV.each do |a|
   test = true if a == "test"
+  prof = true if a == "prof"
 end
-startapp(test)
+
+if prof then
+  require 'profiler'
+  Profiler__::start_profile
+  startapp(test)
+  Profiler__::stop_profile
+  File.open("profile.txt", "w") do |f|
+    Profiler__::print_profile(f)
+  end
+else
+  startapp(test)
+end

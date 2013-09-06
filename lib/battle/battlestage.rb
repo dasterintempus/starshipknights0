@@ -164,23 +164,8 @@ module StarshipKnights
           e.collide(other) if e.respond_to? :collide
 
         end
-      end
-
-    end
-    
-    def cleanup
-      @dead.uniq.each do |d|
-        @entities.delete(d)
-      end
-      @dead.clear
-      #handle wraparound
-      handle_wraparound
-      #deprecated, not refactored
-      #handle_bounds unless @wraparound
-    end
-    
-    def handle_wraparound
-      @entities.each_value do |e|
+        
+        #wraparound
         x = e.x
         y = e.y
         changed = false
@@ -200,7 +185,25 @@ module StarshipKnights
         end
         e.setpos(x,y) if changed
       end
+
     end
+    
+    def cleanup
+      @dead.uniq.each do |d|
+        @entities.delete(d)
+      end
+      @dead.clear
+      #handle wraparound
+      #handle_wraparound
+      #deprecated, not refactored
+      #handle_bounds unless @wraparound
+    end
+    
+    #def handle_wraparound
+    #  @entities.each_value do |e|
+        
+    #  end
+    #end
     
     def handle_bounds
       @entities.each_value do |e|
