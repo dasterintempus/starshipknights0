@@ -6,7 +6,7 @@ module StarshipKnights
 
   class Game
     
-    attr_reader :playeractiveship, :lastbattlestatus
+    attr_reader :playeractiveship, :lastbattlestatus, :shipname
     attr_accessor :difficulty, :score, :currentlevel, :tempscore
     attr_accessor :omg
     def initialize
@@ -41,9 +41,16 @@ module StarshipKnights
     def defaultOMG
       @omg = {}
       @omg["thunderbird"] = false
+      @omg["phoenix_loadout"] = true
+      @omg["kitsune_loadout"] = true
+      @omg["centaur_loadout"] = true
+      @omg["wyvern_loadout"] = true
+      @omg["leviathan_loadout"] = false
+      @omg["thunderbird_loadout"] = false
     end
     
     def selectship(ship)
+      @shipname = ship
       @playeractiveship = GameShip.new(ship)
     end
     

@@ -87,32 +87,32 @@ module StarshipKnights
         end
       else
         case id
-          when Gosu::KbEscape
-            @app.play_sound("menufail")
-            @app.pop_state
-          when Gosu::KbLeftShift
-            @app.play_sound("menufail")
-            @app.pop_state
-          when Gosu::KbNumpad2
-            @app.play_sound("menufail")
-            @app.pop_state
-          when Gosu::KbDown
-            arrow_down
-          when Gosu::KbUp
-            arrow_up
-          when Gosu::KbS
-            arrow_down
-          when Gosu::KbW
-            arrow_up
-          when Gosu::KbReturn
-            @app.play_sound("menuok")
-            select_option
-          when Gosu::KbSpace
-            @app.play_sound("menuok")
-            select_option
-          when Gosu::KbNumpad1
-            @app.play_sound("menuok")
-            select_option
+        when Gosu::KbEscape
+          @app.play_sound("menufail")
+          @app.pop_state
+        when Gosu::KbLeftShift
+          @app.play_sound("menufail")
+          @app.pop_state
+        when Gosu::KbNumpad2
+          @app.play_sound("menufail")
+          @app.pop_state
+        when Gosu::KbDown
+          arrow_down
+        when Gosu::KbUp
+          arrow_up
+        when Gosu::KbS
+          arrow_down
+        when Gosu::KbW
+          arrow_up
+        when Gosu::KbReturn
+          @app.play_sound("menuok")
+          select_option
+        when Gosu::KbSpace
+          @app.play_sound("menuok")
+          select_option
+        when Gosu::KbNumpad1
+          @app.play_sound("menuok")
+          select_option
         end
       end
     end

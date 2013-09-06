@@ -15,7 +15,11 @@ module StarshipKnights
     def select_option
       $game.selectship(@shipoptions[@sel_opt].downcase)
       @app.pop_state
-      @app.add_state GameDiffSelectMenuState.new(@app, @drawwidth, @drawheight)
+      if $game.omg["#{@shipoptions[@sel_opt].downcase}_loadout"] then
+        @app.add_state GameLoadoutSelectState.new(@app, @drawwidth, @drawheight)
+      else
+        @app.add_state GameDiffSelectMenuState.new(@app, @drawwidth, @drawheight)
+      end
     end
   end
   

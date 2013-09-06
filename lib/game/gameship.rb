@@ -10,6 +10,10 @@ module StarshipKnights
       @equipment = Loadout.__send__("#{klass.downcase}_equip_default")
     end
     
+    def equip(equipment)
+      @equipment = equipment if Loadout.validate(@klass, equipment)
+    end
+    
     def spawn(battlestage, x, y, angle, opts=nil)
       return nil unless Loadout.validate(@klass, @equipment)
       opts ||= Hash.new

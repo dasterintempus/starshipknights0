@@ -7,7 +7,7 @@ module StarshipKnights
       attr_reader :afterburnthrustspeed, :afterburnmaxspeed
       
       def configure(opts)
-        opts["imagename"] ||= "phoenixred"
+        opts["imagename"] ||= "phoenix"
         opts["priweptypename"] = "twinlasershot"
         #opts["weaponcdtimer"] = 0.35
         if @equippedsecondary == "wingshot" then
