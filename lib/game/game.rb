@@ -41,10 +41,10 @@ module StarshipKnights
     def defaultOMG
       @omg = {}
       @omg["thunderbird"] = false
-      @omg["phoenix_loadout"] = true
-      @omg["kitsune_loadout"] = true
-      @omg["centaur_loadout"] = true
-      @omg["wyvern_loadout"] = true
+      @omg["phoenix_loadout"] = false
+      @omg["kitsune_loadout"] = false
+      @omg["centaur_loadout"] = false
+      @omg["wyvern_loadout"] = false
       @omg["leviathan_loadout"] = false
       @omg["thunderbird_loadout"] = false
     end
@@ -68,6 +68,11 @@ module StarshipKnights
       @currentlevel += 1
       @score += @tempscore
       @tempscore = 0
+      
+      if @score >= 350 then
+        @omg["#{@shipname}_loadout"] = true
+        writeOMG
+      end
     end
     
     def resetbattle
