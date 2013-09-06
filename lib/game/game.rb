@@ -40,7 +40,7 @@ module StarshipKnights
     
     def defaultOMG
       @omg = {}
-      @omg["thunderbird"] = true
+      @omg["thunderbird"] = false
     end
     
     def selectship(ship)
