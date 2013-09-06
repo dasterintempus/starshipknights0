@@ -128,12 +128,14 @@ module StarshipKnights
         add_input("thrust", "+")
       elsif [Gosu::KbDown, Gosu::KbS].include? id then
         add_input("rthrust", "+")
-      elsif [Gosu::KbSpace, Gosu::KbJ, Gosu::KbNumpad1].include? id then
+      elsif [Gosu::KbSpace, Gosu::KbNumpad1].include? id then
         add_input("fire","+")
-      elsif [Gosu::KbLeftShift, Gosu::KbK, Gosu::KbNumpad2].include? id then
+      elsif [Gosu::KbLeftShift, Gosu::KbNumpad2].include? id then
         add_input("altfire","+")
-      elsif [Gosu::KbLeftControl, Gosu::KbL, Gosu::KbNumpad3].include? id then
+      elsif [Gosu::KbLeftControl, Gosu::KbNumpad3].include? id then
         add_input("special","+")
+      elsif [Gosu::KbX].include? id then
+        add_input("brake","+")
       end
     end
     
@@ -152,6 +154,8 @@ module StarshipKnights
         add_input("altfire", "-")
       elsif [Gosu::KbLeftControl, Gosu::KbL, Gosu::KbNumpad3].include? id then
         add_input("special","-")
+      elsif [Gosu::KbX].include? id then
+        add_input("brake","-")
       end
     end
     
