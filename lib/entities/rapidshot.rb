@@ -10,11 +10,7 @@ module StarshipKnights
       @firesound = "dak"
       
       def configure(opts)
-        if @teamid == 0 then
-          opts["imagename"] ||= "rapidshotred"
-        elsif @teamid == 1 then
-          opts["imagename"] ||= "rapidshotblue"
-        end
+        opts["imagename"] ||= "rapidshot"
         opts["radius"] ||= 3.0
         opts["lifetimer"] ||= 0.65
         opts["hits"] ||= 3

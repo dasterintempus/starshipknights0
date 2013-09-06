@@ -8,12 +8,39 @@ module StarshipKnights
     
     attr_reader :playeractiveship, :lastbattlestatus
     attr_accessor :difficulty, :score, :currentlevel, :tempscore
+    attr_accessor :omg
     def initialize
+      unless File.exists?(".omg") then
+        defaultOMG
+        writeOMG
+      else
+        readOMG
+      end
+    
       @playeractiveship = nil
       @lastbattlestatus = 0
       @score = 0
       @tempscore = 0
       @currentlevel = 1
+    end
+    
+    def readOMG
+      File.open(".omg", "r") do |f|
+        data = f.read.unpack("m")[0]
+        @omg = JSON.load(data)
+      end
+    end
+    
+    def writeOMG
+      File.open(".omg", "w") do |f|
+        data = [JSON.dump(@omg)].pack("m")
+        f.write(data)
+      end
+    end
+    
+    def defaultOMG
+      @omg = {}
+      @omg["thunderbird"] = false
     end
     
     def selectship(ship)

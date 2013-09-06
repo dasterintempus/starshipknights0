@@ -15,5 +15,9 @@ Dir["#{STARSHIPKNIGHTS_ROOT}/**/*.rb"].each do |file|
 end
 
 module StarshipKnights
+<<<<<<< HEAD
   VERSION = "0.1.1a"
+=======
+  VERSION = "0.1.1"
+>>>>>>> origin/omg
 end

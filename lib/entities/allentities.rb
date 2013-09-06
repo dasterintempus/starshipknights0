@@ -19,6 +19,9 @@ require 'triangleshot'
 require 'torpedo'
 require 'railcannon'
 require 'leviathan'
+require 'thunderbird'
+require 'thunderbirdshockwave'
+require 'lightningbolt'
 require 'explosionreal'
 require 'roundblockenemy'
 require 'rayenemy'
@@ -62,6 +65,11 @@ module StarshipKnights
       @@all["torpedo"] = StarshipKnights::Entities::Torpedo
       @@all["railcannon"] = StarshipKnights::Entities::RailCannon
       @@all["leviathan"] = StarshipKnights::Entities::Leviathan
+      
+      out["thunderbird"] = StarshipKnights::Entities::Thunderbird
+      out["lightningbolt"] = StarshipKnights::Entities::LightningBolt
+      out["thunderbirdshockwave"] = StarshipKnights::Entities::ThunderbirdShockwave
+      
       
       #out["railshot"] = StarshipKnights::Entities::RailShot
       #out["slowmine"] = StarshipKnights::Entities::SlowMine

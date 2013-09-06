@@ -11,11 +11,7 @@ module StarshipKnights
     
       attr_reader :disrupt
       def configure(opts)
-        if @teamid == 0 then
-          opts["imagename"] ||= "disruptshotred"
-        elsif @teamid == 1 then
-          opts["imagename"] ||= "disruptshotblue"
-        end
+        opts["imagename"] ||= "disruptshotred"
         opts["radius"] ||= 8.5
         opts["lifetimer"] ||= 0.75
         opts["hits"] ||= 1

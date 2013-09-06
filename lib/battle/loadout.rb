@@ -2,7 +2,7 @@ module StarshipKnights
 
   module Loadout
     def self.ship_names
-      return ["Phoenix", "Centaur", "Kitsune", "Wyvern", "Leviathan"]#, "Djinn"]
+      return ["Phoenix", "Centaur", "Kitsune", "Wyvern", "Leviathan", "Thunderbird"]#, "Djinn"]
     end
     
     def self.phoenix_loadout
@@ -35,6 +35,12 @@ module StarshipKnights
               "Special" => ["TurretMode"]}
     end
     
+    def self.thunderbird_loadout
+      return {"Primary" => ["LightningBolt"],
+              "Secondary" => [""],
+              "Special" => ["WingRay"]}
+    end
+    
     #def self.djinn_loadout
     #  return {"Primary" => ["RailShot"],
     #          "Secondary" => ["SlowMine"],
@@ -59,6 +65,10 @@ module StarshipKnights
     
     def self.leviathan_equip_default
       return ["TriangleShot", "Torpedo", "TurretMode"]
+    end
+    
+    def self.thunderbird_equip_default
+      return ["LightningBolt", "", "WingRay"]
     end
     
     #def self.djinn_equip_default
